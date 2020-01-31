@@ -1,7 +1,7 @@
 package com.net.service;
 
-import com.net.dto.AdWorkMediaRequestDTO;
-import com.net.dto.AdWorkMediaResponseDTO;
+import com.net.dto.adwork.AdWorkMediaRequestDTO;
+import com.net.dto.adwork.AdWorkMediaResponseDTO;
 import okhttp3.ConnectionSpec;
 import okhttp3.OkHttpClient;
 import org.springframework.stereotype.Service;
@@ -20,6 +20,7 @@ public class AdWorkMediaService {
 
 		AdWorkMediaRequestDTO requestDTO = new AdWorkMediaRequestDTO();
 		requestDTO.setCampDetails(true);
+		requestDTO.setMaxCampaigns("20");
 
 		String fooResourceUrl = "https://www.adworkmedia.com/";
 

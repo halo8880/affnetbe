@@ -1,6 +1,6 @@
 package com.net.service;
 
-import com.net.dto.AdWorkMediaResponseDTO;
+import com.net.dto.adwork.AdWorkMediaResponseDTO;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.QueryMap;

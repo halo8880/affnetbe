@@ -1,4 +1,4 @@
-package com.net.dto;
+package com.net.dto.adwork;
 
 import lombok.Data;
 
@@ -20,4 +20,8 @@ public class AdWorkMediaResponseDTO {
 	String teaseDesc; //Special Offer! Get a $250 Grocery Gift Card!",
 	String conversion_point; //E-mail Submit",
 	String device_type; //All Devices (Mobile Friendly)"
+
+	public String getImage() {
+		return "https://www.adworkmedia.com/images/campPreview/" + this.campaign_id + ".png";
+	}
 }

@@ -1,4 +1,4 @@
-package com.net.dto;
+package com.net.dto.adwork;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
@@ -51,6 +51,7 @@ public class AdWorkMediaRequestDTO {
 		map.put("apiID", this.apiID);
 		map.put("format", this.format);
 		map.put("campDetails", this.campDetails + "");
+		map.put("maxCampaigns", this.maxCampaigns + "");
 
 		return map;
 	}
