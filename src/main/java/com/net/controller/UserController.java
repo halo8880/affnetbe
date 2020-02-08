@@ -13,6 +13,7 @@ import com.net.mapper.UserMapper;
 import com.net.repository.LeadOfferRepository;
 import com.net.repository.UpdateInfoRequestRepository;
 import com.net.repository.UserRepository;
+import com.net.service.EmailSenderService;
 import com.net.service.UserDetailsServiceImpl;
 import com.net.service.UserService;
 import lombok.extern.log4j.Log4j2;
@@ -24,11 +25,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -53,6 +56,8 @@ public class UserController {
 	UpdateInfoRequestRepository updateInfoRequestRepository;
 	@Autowired
 	LeadOfferRepository leadOfferRepository;
+	@Autowired
+	EmailSenderService emailSenderService;
 
 	@GetMapping("/user/current")
 	public UserDTO loggedUser() throws Exception {
@@ -83,16 +88,10 @@ public class UserController {
 
 	@PostMapping("/user/update-paypal")
 	public void updatePaypalInfo(@RequestBody Map<String, String> updatedInfo) throws Exception {
-		String newPaypalInfo = updatedInfo.get("newPaypalInfo");
-		UpdateInfoRequest updateRequest = new UpdateInfoRequest();
-		updateRequest.setInfoType(UpdateInfoRequest.InfoType.PAYPAL);
-		updateRequest.setNewInfo(newPaypalInfo);
-		updateRequest.setStatus(UpdateInfoRequest.Status.WAITING);
-		updateRequest.setUser(new User(userService.getLoggedInUser().getId()));
-		updateRequest.setConfirmCode(LocalDateTime.now().getNano() + "");
-		updateInfoRequestRepository.save(updateRequest);
-		//TODO send mail with confirm code
+		userService.updatePaypal(updatedInfo);
 	}
+
+
 
 	@GetMapping("/user/dashboard")
 	public DashboardDTO dashboardInfo() throws Exception {
