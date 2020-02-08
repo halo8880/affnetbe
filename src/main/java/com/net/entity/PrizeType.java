@@ -26,9 +26,9 @@ public class PrizeType {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
 	String prizeName;
-	@Column(columnDefinition = "clob")
+	@Column(columnDefinition = "text")
 	String prizeDesc;
-	@Column(columnDefinition = "clob")
+	@Column(columnDefinition = "text")
 	String image;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true,
