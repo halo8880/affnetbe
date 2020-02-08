@@ -1,4 +1,4 @@
-package com.net.dto;
+package com.net.dto.user;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,4 +8,5 @@ import lombok.Setter;
 public class UserCredentials {
 	private String username;
 	private String password;
+	private String refBy;
 }

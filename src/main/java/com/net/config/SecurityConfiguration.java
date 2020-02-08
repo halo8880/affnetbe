@@ -1,6 +1,8 @@
 package com.net.config;
 
+import com.net.repository.UserRepository;
 import com.net.service.UserDetailsServiceImpl;
+import com.net.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,12 +20,15 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsServiceImpl customUserDetailsService;
+	@Autowired
+	UserRepository userRepository;
+	@Autowired
+	UserService userService;
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -44,7 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/static/**").permitAll()
 				.anyRequest().authenticated()
 				.and()
-				.addFilterBefore(new LoginFilter("/login", authenticationManager()),
+				.addFilterBefore(new LoginFilter("/login", authenticationManager(), userRepository, userService, passwordEncoder()),
 						UsernamePasswordAuthenticationFilter.class)
 				.addFilterBefore(new AuthenticationFilter(),
 						UsernamePasswordAuthenticationFilter.class);

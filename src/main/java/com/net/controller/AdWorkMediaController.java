@@ -4,8 +4,7 @@ import com.net.dto.adwork.AdWorkMediaResponseDTO;
 import com.net.entity.LeadOffer;
 import com.net.repository.LeadOfferRepository;
 import com.net.service.AdWorkMediaService;
-import lombok.extern.java.Log;
-import lombok.extern.log4j.Log4j;
+import com.net.service.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,18 +13,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
 import java.util.List;
 
-//@Log4j2
+@Log4j2
 @RestController
 @RequestMapping("adworkmedia")
 public class AdWorkMediaController {
 	@Autowired
 	AdWorkMediaService adWorkMediaService;
+	@Autowired
+	UserService userService;
 
 	@Autowired
 	LeadOfferRepository leadOfferRepository;
-	private static final org.apache.logging.log4j.Logger log = org.apache.logging.log4j.LogManager.getLogger(AdWorkMediaController.class);
 
 	@GetMapping("offer")
 	public List<AdWorkMediaResponseDTO> getOffers() throws IOException {
@@ -79,7 +81,9 @@ public class AdWorkMediaController {
 		leadOffer.setCountry(country);
 		leadOffer.setUserId(Long.parseLong(sid));
 		leadOffer.setSourceNetwork("ADWORKMEDIA");
+		leadOffer.setLeadDate(LocalDate.now(ZoneOffset.UTC));
 		log.info(leadOffer.toString());
 		leadOfferRepository.save(leadOffer);
+
 	}
 }

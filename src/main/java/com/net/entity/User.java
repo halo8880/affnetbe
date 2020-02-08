@@ -37,7 +37,6 @@ public class User {
 	private Integer point = 0;
 	private Integer refPoint = 0;
 	private Integer spentPoint = 0;
-	private Integer availablePoint = 0;
 
 	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL,
 			fetch = FetchType.LAZY, mappedBy = "user")

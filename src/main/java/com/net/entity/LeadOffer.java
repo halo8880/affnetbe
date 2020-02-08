@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "lead_offer")
@@ -16,6 +17,7 @@ public class LeadOffer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
 	Long userId;
+	LocalDate leadDate;
 	String sourceNetwork;
 
 	String campId;
