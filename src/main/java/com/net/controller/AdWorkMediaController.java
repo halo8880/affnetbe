@@ -65,6 +65,11 @@ public class AdWorkMediaController {
 //		requestDTO.setLeadID(leadID);
 //		requestDTO.setCountry(country);
 
+		Long longSid = 0L;
+		try {
+			longSid = Long.parseLong(sid);
+		}catch (Exception e) {}
+
 		LeadOffer leadOffer = new LeadOffer();
 		leadOffer.setCampId(campId);
 		leadOffer.setCampName(campName);
@@ -79,7 +84,7 @@ public class AdWorkMediaController {
 		leadOffer.setVcValue(vcValue);
 		leadOffer.setLeadID(leadID);
 		leadOffer.setCountry(country);
-		leadOffer.setUserId(Long.parseLong(sid));
+		leadOffer.setUserId(longSid);
 		leadOffer.setSourceNetwork("ADWORKMEDIA");
 		leadOffer.setLeadDate(LocalDate.now(ZoneOffset.UTC));
 		log.info(leadOffer.toString());
