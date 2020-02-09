@@ -68,7 +68,8 @@ public class AdWorkMediaController {
 		Long longSid = 0L;
 		try {
 			longSid = Long.parseLong(sid);
-		}catch (Exception e) {}
+		} catch (Exception e) {
+		}
 
 		LeadOffer leadOffer = new LeadOffer();
 		leadOffer.setCampId(campId);

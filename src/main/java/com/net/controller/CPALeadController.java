@@ -34,6 +34,13 @@ public class CPALeadController {
 			@RequestParam(name = "password", required = false) String password,
 			@RequestParam(name = "virtual_currency", required = false) String virtual_currency
 	) {
+		Long userId = 0L;
+		try {
+			userId = Long.parseLong(subid);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
 		LeadOffer leadOffer = new LeadOffer();
 		leadOffer.setSourceNetwork("CPALEAD");
 		leadOffer.setCampId(campaign_id);
@@ -49,6 +56,7 @@ public class CPALeadController {
 		leadOffer.setVcValue(virtual_currency);
 		leadOffer.setLeadDate(LocalDate.now(ZoneOffset.UTC));
 
+		leadOffer.setUserId(userId);
 		leadOfferRepository.save(leadOffer);
 	}
 }

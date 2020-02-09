@@ -58,6 +58,9 @@ public class NetworkWallController {
 		if (rs.getNetworkName().equalsIgnoreCase("cpalead")) {
 			rs.setIframeUrl(rs.getIframeUrl() + "?subid=" + userService.getLoggedInUser().getId());
 		}
+		if (rs.getNetworkName().equalsIgnoreCase("cpagrip")) {
+			rs.setIframeUrl(rs.getIframeUrl() + "?tracking_id=" + userService.getLoggedInUser().getId());
+		}
 		return rs;
 	}
 }
