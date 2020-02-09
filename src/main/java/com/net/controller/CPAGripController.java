@@ -35,6 +35,7 @@ public class CPAGripController {
 		leadOffer.setSourceNetwork("CPAGRIP");
 		leadOffer.setCampId(offer_id);
 		leadOffer.setSid(tracking_id);
+		leadOffer.setCommission(payout);
 		leadOffer.setLeadID(click_id);
 
 		leadOffer.setLeadDate(LocalDate.now(ZoneOffset.UTC));
